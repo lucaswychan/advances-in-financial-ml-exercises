@@ -18,14 +18,25 @@ def volume_bar(df, volume_size=100):
     return df.iloc[tick_indices]
 
 def dollar_bar(df, dollar_size=100000):
-    curr_dollar = 0
+    if dollar_size <= 0:
+        return df.iloc[np.arange(len(df))]
+
+    dollar_values = df['dollar_vol'].to_numpy()
+    dollar_cumsum = np.cumsum(dollar_values)
     tick_indices = []
-    
-    for i in range(len(df)):
-        curr_dollar += df.iloc[i]['dollar_vol']
-        if curr_dollar >= dollar_size:
-            tick_indices.append(i)
-            curr_dollar = 0
+
+    # Dollar volume is non-negative, so the cumulative sum can be searched directly.
+    curr_idx = -1
+    while curr_idx < len(dollar_cumsum) - 1:
+        prev_dollar = 0 if curr_idx == -1 else dollar_cumsum[curr_idx]
+        curr_idx = np.searchsorted(
+            dollar_cumsum,
+            prev_dollar + dollar_size,
+            side='left',
+        )
+        if curr_idx == len(dollar_cumsum):
+            break
+        tick_indices.append(curr_idx)
 
     return df.iloc[tick_indices]
 
