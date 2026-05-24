@@ -1,6 +1,7 @@
 from sklearn.model_selection._split import _BaseKFold
 import pandas as pd
 import numpy as np
+from sklearn.metrics import accuracy_score, log_loss
 
 
 class PurgedKFold(_BaseKFold):
@@ -39,3 +40,39 @@ class PurgedKFold(_BaseKFold):
                 (train_indices, indices[maxT1Idx + embargo :])
             )
             yield train_indices, test_indices
+
+
+def _score_model(model, X, y, sample_weight=None, scoring_metric="accuracy"):
+    supported_metrics = ["accuracy", "neg_log_loss"]
+    if scoring_metric not in supported_metrics:
+        raise ValueError(f"Invalid scoring metric. Supported metrics are {supported_metrics}.")
+
+    if scoring_metric == "accuracy":
+        predictions = model.predict(X)
+        return accuracy_score(y, predictions, sample_weight=sample_weight)
+
+    probabilities = model.predict_proba(X)
+    return -log_loss(
+        y,
+        probabilities,
+        sample_weight=sample_weight,
+        labels=model.classes_,
+    )
+
+
+def cross_val_scores(model, X, y, cv_generator, sample_weight=None, scoring_metric="accuracy"):
+    supported_metrics = ["accuracy", "neg_log_loss"]
+    if scoring_metric not in supported_metrics:
+        raise ValueError(f"Invalid scoring metric. Supported metrics are {supported_metrics}.")
+
+    scores = []
+    for train_indices, test_indices in cv_generator.split(X, y):
+        X_train, X_test = X.iloc[train_indices, :], X.iloc[test_indices, :]
+        y_train, y_test = y.iloc[train_indices], y.iloc[test_indices]
+        w_train = None if sample_weight is None else sample_weight.iloc[train_indices].values
+        w_test = None if sample_weight is None else sample_weight.iloc[test_indices].values
+
+        fit = model.fit(X_train, y_train, sample_weight=w_train)
+        scores.append(_score_model(fit, X_test, y_test, w_test, scoring_metric))
+
+    return pd.Series(scores)
