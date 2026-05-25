@@ -2,7 +2,7 @@
 
 Personal exercise solutions and implementations following the book [*Advances in Financial Machine Learning*](https://www.wiley.com/en-us/Advances+in+Financial+Machine+Learning-p-9781119482086) by Marcos López de Prado.
 
-Each chapter directory contains Jupyter notebooks that work through the end-of-chapter questions and apply the concepts to real tick data (will be uploaded once I finish all the chapters).
+Each chapter directory contains Jupyter notebooks that work through the end-of-chapter questions and apply the concepts to real tick data (will be uploaded once I finish all the chapters). No `mlfinlab` dependency!!! All codes only depend on well-known package such as `numpy` and `pandas`.
 
 ---
 
@@ -73,12 +73,12 @@ Each chapter directory contains Jupyter notebooks that work through the end-of-c
 | 6 | Ensemble Methods | Done |
 | 7 | Cross-Validation in Finance | Done |
 | 8 | Feature Importance | Done |
+| 9 | HyperParameter Tuning with Cross-Validation | Ongoing |
 
 ---
 
 ## TODO
 
-- [ ] Add Chapter 8 — Feature Importance
 - [ ] Add Chapter 9 — Hyper-Parameter Tuning
 - [ ] Add Chapter 17 — Structural Breaks
 - [ ] Add Chapter 20 — Backtesting on Synthetic Data
