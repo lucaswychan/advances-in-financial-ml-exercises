@@ -73,15 +73,26 @@ Each chapter directory contains Jupyter notebooks that work through the end-of-c
 | 6 | Ensemble Methods | Done |
 | 7 | Cross-Validation in Finance | Done |
 | 8 | Feature Importance | Done |
-| 9 | HyperParameter Tuning with Cross-Validation | Ongoing |
+| 9 | HyperParameter Tuning with Cross-Validation | Done |
+| 10 | Bet Sizing | Ongoing |
 
 ---
 
 ## TODO
 
-- [ ] Add Chapter 9 — Hyper-Parameter Tuning
+- [ ] Add Chapter 10 — Bet Sizing
+- [ ] Add Chapter 11 — The Dangers of Backtesting
+- [ ] Add Chapter 12 — Backtesting through Cross-Validation
+- [ ] Add Chapter 13 — Backtesting on Synthetic Data
+- [ ] Add Chapter 14 — Backtest Statistics
+- [ ] Add Chapter 15 — Understanding Strategy Risk
+- [ ] Add Chapter 16 — Machine Learning Asset Allocation
 - [ ] Add Chapter 17 — Structural Breaks
-- [ ] Add Chapter 20 — Backtesting on Synthetic Data
+- [ ] Add Chapter 18 — Entropy Features
+- [ ] Add Chapter 19 — Microstructural Features
+- [ ] Add Chapter 20 — Multiprocessing and Vectorization
+- [ ] Add Chapter 21 — Brute Force and Quantum Computers
+- [ ] Add Chapter 22 — High-Performance Computational Intelligence and Forecasting Technologies
 - [ ] Refactor `utils/` into a proper installable package with `pyproject.toml`
 - [ ] Add a unified data pipeline script so all notebooks share one pre-built dataset
 
