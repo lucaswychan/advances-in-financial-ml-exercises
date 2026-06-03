@@ -74,13 +74,13 @@ Each chapter directory contains Jupyter notebooks that work through the end-of-c
 | 7 | Cross-Validation in Finance | Done |
 | 8 | Feature Importance | Done |
 | 9 | HyperParameter Tuning with Cross-Validation | Done |
-| 10 | Bet Sizing | Ongoing |
+| 10 | Bet Sizing | Done |
+| 11 | The Dangers of Backtesting | Ongoing |
 
 ---
 
 ## TODO
 
-- [ ] Add Chapter 10 — Bet Sizing
 - [ ] Add Chapter 11 — The Dangers of Backtesting
 - [ ] Add Chapter 12 — Backtesting through Cross-Validation
 - [ ] Add Chapter 13 — Backtesting on Synthetic Data
