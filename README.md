@@ -76,13 +76,13 @@ Each chapter directory contains Jupyter notebooks that work through the end-of-c
 | 9 | HyperParameter Tuning with Cross-Validation | Done |
 | 10 | Bet Sizing | Done |
 | 11 | The Dangers of Backtesting | Done |
-| 12 | Backtesting through Cross-Validation | Ongoing |
+| 12 | Backtesting through Cross-Validation | Done |
+| 13 | Backtesting on Synthetic Data | Ongoing |
 
 ---
 
 ## TODO
 
-- [ ] Add Chapter 12 — Backtesting through Cross-Validation
 - [ ] Add Chapter 13 — Backtesting on Synthetic Data
 - [ ] Add Chapter 14 — Backtest Statistics
 - [ ] Add Chapter 15 — Understanding Strategy Risk
