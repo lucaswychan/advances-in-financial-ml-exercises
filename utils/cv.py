@@ -30,14 +30,18 @@ class PurgedKFold(_BaseKFold):
             for i in np.array_split(np.arange(X.shape[0]), self.n_splits)
         ]
         for i, j in test_starts:
+            # t0 is the start time of the test set
             t0 = self.t1.index[i]
             test_indices = indices[i:j]
             # test_indices are positional (from sklearn splitters), so use iloc.
-            max_t1 = self.t1.iloc[test_indices].max()
-            maxT1Idx = self.t1.index.searchsorted(max_t1)
+            max_t1 = self.t1.iloc[test_indices].max() # max_t1 is the maximum end time of the test set
+            maxT1Idx = self.t1.index.searchsorted(max_t1) # t1.index is the start time of the events (t0)
+            # ensure the train end time are before the test start time (purging)
             train_indices = self.t1.index.searchsorted(self.t1[self.t1 <= t0].index)
             train_indices = np.concatenate(
-                (train_indices, indices[maxT1Idx + embargo :])
+                # train_indices is the purged train set before the test set
+                # indices[maxT1Idx + embargo :] is embargoed train set after the test set
+                (train_indices, indices[maxT1Idx + embargo :]) # indices[maxT1Idx + embargo :] is the indices of the events after the test set
             )
             yield train_indices, test_indices
 
