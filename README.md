@@ -77,13 +77,13 @@ Each chapter directory contains Jupyter notebooks that work through the end-of-c
 | 10 | Bet Sizing | Done |
 | 11 | The Dangers of Backtesting | Done |
 | 12 | Backtesting through Cross-Validation | Done |
-| 13 | Backtesting on Synthetic Data | Ongoing |
+| 13 | Backtesting on Synthetic Data | Done |
+| 14 | Backtest Statistics | Ongoing |
 
 ---
 
 ## TODO
 
-- [ ] Add Chapter 13 — Backtesting on Synthetic Data
 - [ ] Add Chapter 14 — Backtest Statistics
 - [ ] Add Chapter 15 — Understanding Strategy Risk
 - [ ] Add Chapter 16 — Machine Learning Asset Allocation
