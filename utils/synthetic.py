@@ -4,6 +4,7 @@ from random import gauss
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.stats import norm
+from tqdm import tqdm
 
 
 def fit_ou_process(price_series: pd.Series) -> dict:
@@ -91,9 +92,12 @@ def explain_and_plot_ou_params(ou_params, dollar_bars):
 def simulate_ou_process(coeffs, iterations=1e5, max_hp=100, r_pt=np.linspace(0.5, 10, 20), r_slm=np.linspace(0.5, 10, 20), seed=0):
     phi = coeffs['phi'] if "phi" in coeffs else 2 ** (-1.0 / coeffs['hl'])
     outputs = []
-    for comb_ in product(r_pt, r_slm):
+    # Describe what tqdm progress bar is showing: "Sweep over (profit-taking, stop-loss multiple) pairs"
+    progress_desc = "Sweep (r_pt, r_slm) pairs"
+    for comb_ in tqdm(product(r_pt, r_slm), desc=progress_desc, total=len(r_pt)*len(r_slm)):
         output_per_path = []
-        for _ in range(int(iterations)):
+        # tqdm progress for each (pt, slm) pair: "Simulating paths"
+        for _ in tqdm(range(int(iterations)), desc=f"Simulate {comb_}", leave=False, disable=True):
             p, hp = seed, 0
             for _ in range(max_hp):
                 p = (1 - phi) * coeffs['forecast'] + phi * p + coeffs['sigma'] * gauss(0, 1)
@@ -102,10 +106,10 @@ def simulate_ou_process(coeffs, iterations=1e5, max_hp=100, r_pt=np.linspace(0.5
                 if cP > comb_[0] or cP < -comb_[1]:
                     output_per_path.append(cP)
                     break
-        
+
         if len(output_per_path) > 1:
             mean, std = np.mean(output_per_path), np.std(output_per_path)
-            print(comb_[0], comb_[1], mean, std, mean / std)
+            # print(comb_[0], comb_[1], mean, std, mean / std)
             outputs.append((comb_[0], comb_[1], mean, std, mean / std))
         else:
             outputs.append((comb_[0], comb_[1], 0, 0, 0))
