@@ -79,13 +79,13 @@ Each chapter directory contains Jupyter notebooks that work through the end-of-c
 | 12 | Backtesting through Cross-Validation | Done |
 | 13 | Backtesting on Synthetic Data | Done |
 | 14 | Backtest Statistics | Done |
-| 15 | Understanding Strategy Risk | Ongoing |
+| 15 | Understanding Strategy Risk | Done |
+| 16 | Machine Learning Asset Allocation | Ongoing |
 
 ---
 
 ## TODO
 
-- [ ] Add Chapter 15 — Understanding Strategy Risk
 - [ ] Add Chapter 16 — Machine Learning Asset Allocation
 - [ ] Add Chapter 17 — Structural Breaks
 - [ ] Add Chapter 18 — Entropy Features
