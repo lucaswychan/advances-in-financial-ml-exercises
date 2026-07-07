@@ -81,14 +81,14 @@ Each chapter directory contains Jupyter notebooks that work through the end-of-c
 | 14 | Backtest Statistics | Done |
 | 15 | Understanding Strategy Risk | Done |
 | 16 | Machine Learning Asset Allocation | Done |
-| 17 | Structural Breaks | Ongoing |
+| 17 | Structural Breaks | Done |
+| 18 | Entropy Features | Done |
+| 19 | Microstructural Features | Ongoing |
 
 ---
 
 ## TODO
 
-- [ ] Add Chapter 17 — Structural Breaks
-- [ ] Add Chapter 18 — Entropy Features
 - [ ] Add Chapter 19 — Microstructural Features
 - [ ] Add Chapter 20 — Multiprocessing and Vectorization
 - [ ] Add Chapter 21 — Brute Force and Quantum Computers
