@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "policy": "Vendor market data is local-only and must not be committed.",
+  "datasets": [
+    {
+      "id": "ive-kibot",
+      "source": "Kibot IVE tick-with-bid-ask sample",
+      "license": "Private use; redistribution prohibited",
+      "input": "data/raw/IVE_tickbidask.txt or .txt.zst",
+      "output": "data/processed/clean_IVE_tickbidask.parquet",
+      "producer": "python utils/prepare_data.py kibot",
+      "used_by": "Chapters 2-9, 13-14, 17-18"
+    },
+    {
+      "id": "esz3-databento",
+      "source": "Databento GLBX.MDP3, ESZ3 MBP-1",
+      "license": "CME/Databento entitlement required; not redistributed here",
+      "input": "data/raw/ESZ3_mbp1_2023-11-01.parquet",
+      "outputs": [
+        "data/processed/emini_sp500_futures_clean_events.parquet",
+        "data/processed/emini_sp500_futures_trades.parquet"
+      ],
+      "producer": "python utils/prepare_data.py databento",
+      "used_by": "Chapter 19"
+    },
+    {
+      "id": "macro-daily",
+      "source": "User-supplied SPX, Euro Stoxx, and EUR/USD daily CSV files",
+      "license": "Provenance and redistribution rights not yet verified",
+      "inputs": [
+        "data/raw/spx.csv",
+        "data/raw/eurostoxx.csv",
+        "data/raw/eur_usd.csv"
+      ],
+      "used_by": "Chapter 2 Q3 and Chapter 13"
+    }
+  ]
+}

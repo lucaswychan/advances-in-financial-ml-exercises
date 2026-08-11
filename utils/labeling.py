@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 import multiprocessing as mp
 from utils.multiprocess import mpPandasObj
+from utils.data_paths import artifact_path
 
 
 def get_daily_vol(close, span0=100):
@@ -70,7 +71,7 @@ def get_vertical_bars(close, t_events, num_days=1):
 # TRIPLE-BARRIER LABELING METHOD
 def apply_pt_sl_on_t1(close, events, pt_sl, molecule):
     """
-    For example, from applied_pt_sl.csv:
+    For example, from data/artifacts/applied_pt_sl.csv:
 
     2010-05-06 14:46:25,2010-05-07 14:50:01,2010-05-06 14:48:37,2010-05-06 14:46:27
     For the event starting at 2010-05-06 14:46:25:
@@ -126,7 +127,7 @@ def get_events(close, t_events, pt_sl, target, min_ret, num_threads=1, t1=None, 
     events = pd.concat({'t1': t1, 'target': target, 'side': side_}, axis=1).dropna(subset=['target'])
     barriers = mpPandasObj(func=apply_pt_sl_on_t1, pdObj=('molecule', events.index), numThreads=num_threads, close=close, events=events, pt_sl=pt_sl_)
     
-    barriers.to_csv('applied_pt_sl.csv')
+    barriers.to_csv(artifact_path("applied_pt_sl.csv"))
     # Replaces events['t1'] with the earliest touched barrier
     # However, we don't know which barrier is touched
     barriers = barriers.dropna(how='all')

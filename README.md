@@ -2,7 +2,7 @@
 
 Personal exercise solutions and implementations following the book [*Advances in Financial Machine Learning*](https://www.wiley.com/en-us/Advances+in+Financial+Machine+Learning-p-9781119482086) by Marcos López de Prado.
 
-Each chapter directory contains Jupyter notebooks that work through the end-of-chapter questions and apply the concepts to real tick data (will be uploaded once I finish all the chapters). No `mlfinlab` dependency!!! All codes only depend on well-known package such as `numpy` and `pandas`.
+Each chapter directory contains Jupyter notebooks that work through the end-of-chapter questions and apply the concepts to real tick data. The licensed market records are not redistributed; users obtain them from the provider and build the notebook-ready files with the included pipeline. There is no `mlfinlab` dependency.
 
 ---
 
@@ -17,7 +17,8 @@ Each chapter directory contains Jupyter notebooks that work through the end-of-c
 ├── chapter-6-Ensemble_Methods/           # Bagging, random forests, feature importance
 ├── chapter-7_Cross_Validation_in_Finance/# Purged K-Fold CV, embargo, combinatorial CV
 ├── utils/                                # Shared helper modules (see below)
-├── data/                                 # Raw / processed data files
+├── data/                                 # Local-only raw, processed, and artifact files
+├── DATA.md                               # Data licenses and preparation workflow
 └── requirements.txt
 ```
 
@@ -32,6 +33,8 @@ Each chapter directory contains Jupyter notebooks that work through the end-of-c
 | `cv.py` | `PurgedKFold` — leak-free cross-validation splitter |
 | `multiprocess.py` | Pandas-friendly multiprocessing wrapper |
 | `es_tick_data.py` | Databento data loader for E-mini S&P 500 tick data |
+| `prepare_data.py` | Licensed-data acquisition, cleaning, and validation CLI |
+| `data_paths.py` | Launch-directory-independent notebook data paths |
 
 ---
 
@@ -52,7 +55,24 @@ Each chapter directory contains Jupyter notebooks that work through the end-of-c
    pip install -r requirements.txt
    ```
 
-3. **Run the notebooks**
+3. **Obtain and prepare the data**
+
+   Follow [DATA.md](DATA.md) to obtain the vendor files under your own license.
+   Prepare the dataset needed by your chapters:
+
+   ```bash
+   python utils/prepare_data.py kibot
+   python utils/prepare_data.py databento
+   ```
+
+   The Databento command is only required for Chapter 19. Check readiness
+   without exposing credentials:
+
+   ```bash
+   python utils/prepare_data.py check
+   ```
+
+4. **Run the notebooks**
 
    Launch Jupyter and open any chapter notebook:
 
@@ -94,7 +114,6 @@ Each chapter directory contains Jupyter notebooks that work through the end-of-c
 - [ ] Add Chapter 21 — Brute Force and Quantum Computers
 - [ ] Add Chapter 22 — High-Performance Computational Intelligence and Forecasting Technologies
 - [ ] Refactor `utils/` into a proper installable package with `pyproject.toml`
-- [ ] Add a unified data pipeline script so all notebooks share one pre-built dataset
 
 ---
 

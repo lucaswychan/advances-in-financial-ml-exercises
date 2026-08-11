@@ -1,5 +1,14 @@
-data/
+# Licensed inputs, generated datasets, and notebook artifacts stay local.
+data/**
+!data/README.md
+!data/manifest.json
+
+**/applied_pt_sl.csv
+**/trend_follow_signals.csv
+
 .env
 .venv/
 venv/
 __pycache__/
+.ipynb_checkpoints/
+.DS_Store
